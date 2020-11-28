@@ -66,11 +66,13 @@ def parse(DataIO, save_path):
 
 if __name__ == '__main__':
     # 解析本地PDF文本，保存到本地TXT
-    with open(r'/Users/inter.d/Library/Mobile Documents/com~apple~CloudDocs/大三上/学习/JavaWeb/180809329段益迈计算器.pdf', 'rb') as pdf_html:
-        parse(pdf_html, r'/Users/inter.d/Library/Mobile Documents/com~apple~CloudDocs/大三上/学习/JavaWeb/180809329段益迈计算器.txt')
+    with open(r'/Users/inter.d/Library/Mobile Documents/com~apple~CloudDocs/大三上/学习/JavaWeb/180809329段益迈计算器.pdf',
+              'rb') as pdf_html:
+        parse(pdf_html,
+              r'/Users/inter.d/Library/Mobile Documents/com~apple~CloudDocs/大三上/学习/JavaWeb/180809329段益迈计算器.txt')
 
     # 解析网络上的PDF，保存文本到本地
     # url = "https:"
     # pdf_html = urllib.urlopen(url).read()
     # DataIO = StringIO(pdf_html)
-    # parse_pdf(DataIO, r'E:\parse_pdf')
+    # parse_pdf(DataIO, r'/Users/inter.d/Library/')
