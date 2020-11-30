@@ -17,36 +17,17 @@ db_name = 'dymtest'
 db = pymysql.connect("localhost", db_username, db_password, db_name)
 
 # cursor
-cursor_gross_profit_margin = db.cursor()
-cursor_sales_margin = db.cursor()
-cursor_roe = db.cursor()
-cursor_mbigr = db.cursor()
-cursor_net_profit_growth_rate = db.cursor()
-cursor_net_assets_growth_rate = db.cursor()
-cursor_rdiaapor = db.cursor()
-cursor_artd = db.cursor()
-cursor_inventory_turnover_days = db.cursor()
-cursor_sales_to_cash_ratio = db.cursor()
-cursor_current_ratio = db.cursor()
-cursor_quick_ratio = db.cursor()
-cursor_interest_payment_multiple = db.cursor()
-cursor_assets_and_liabilities = db.cursor()
-cursor_cash_short_debt_ratio = db.cursor()
-cursor_per_capita_output_value = db.cursor()
-cursor_per_capita_salary = db.cursor()
-cursor_seaapor = db.cursor()
-cursor_meaapor = db.cursor()
-cursor_ebitda = db.cursor()
+cursor = db.cursor()
 
 
-def calculate_gross_profit(start_year=2010, end_year=2020):
+def calculate_gross_profit(years):
     print('gross_profit:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_gross_profit_margin.execute(
+    for year in years:
+        cursor.execute(
             "select gross_profit_margin from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        gross_profit_margin_now = cursor_gross_profit_margin.fetchone()[0]
+        gross_profit_margin_now = cursor.fetchone()[0]
         alist.append(gross_profit_margin_now)
     print(alist)
     gross_profit_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -57,14 +38,14 @@ def calculate_gross_profit(start_year=2010, end_year=2020):
     return gross_profit_list
 
 
-def calculate_sales_margin(start_year=2010, end_year=2020):
+def calculate_sales_margin(years):
     print('sales_margin:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_sales_margin.execute(
+    for year in years:
+        cursor.execute(
             "select sales_margin from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        sales_margin_now = cursor_sales_margin.fetchone()[0]
+        sales_margin_now = cursor.fetchone()[0]
         alist.append(sales_margin_now)
     print(alist)
     sales_margin_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -74,15 +55,15 @@ def calculate_sales_margin(start_year=2010, end_year=2020):
     return sales_margin_list
 
 
-def calculate_roe(start_year=2010, end_year=2020):
+def calculate_roe(years):
     print('==============================')
     print('roe:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_roe.execute(
+    for year in years:
+        cursor.execute(
             "select roe from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        roe_now = cursor_roe.fetchone()[0]
+        roe_now = cursor.fetchone()[0]
         alist.append(roe_now)
     print(alist)
     roe_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5], alist[5] - alist[4],
@@ -91,15 +72,15 @@ def calculate_roe(start_year=2010, end_year=2020):
     return roe_list
 
 
-def calculate_mbigr(start_year=2010, end_year=2020):
+def calculate_mbigr(years):
     print('==============================')
     print('mbigr:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_mbigr.execute(
+    for year in years:
+        cursor.execute(
             "select mbigr from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        mbigr_now = cursor_mbigr.fetchone()[0]
+        mbigr_now = cursor.fetchone()[0]
         alist.append(mbigr_now)
     print(alist)
     mbigr_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -109,15 +90,15 @@ def calculate_mbigr(start_year=2010, end_year=2020):
     return mbigr_list
 
 
-def calculate_net_profit_growth_rate(start_year=2010, end_year=2020):
+def calculate_net_profit_growth_rate(years):
     print('==============================')
     print('net_profit_growth_rate:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_net_profit_growth_rate.execute(
+    for year in years:
+        cursor.execute(
             "select net_profit_growth_rate from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        net_profit_growth_rate_now = cursor_net_profit_growth_rate.fetchone()[0]
+        net_profit_growth_rate_now = cursor.fetchone()[0]
         alist.append(net_profit_growth_rate_now)
     print(alist)
     net_profit_growth_rate_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -127,15 +108,15 @@ def calculate_net_profit_growth_rate(start_year=2010, end_year=2020):
     return net_profit_growth_rate_list
 
 
-def calculate_net_assets_growth_rate(start_year=2010, end_year=2020):
+def calculate_net_assets_growth_rate(years):
     print('==============================')
     print('net_assets_growth_rate:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_net_assets_growth_rate.execute(
+    for year in years:
+        cursor.execute(
             "select net_assets_growth_rate from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        net_assets_growth_rate_now = cursor_net_assets_growth_rate.fetchone()[0]
+        net_assets_growth_rate_now = cursor.fetchone()[0]
         alist.append(net_assets_growth_rate_now)
     print(alist)
     net_assets_growth_rate_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -145,15 +126,15 @@ def calculate_net_assets_growth_rate(start_year=2010, end_year=2020):
     return net_assets_growth_rate_list
 
 
-def calculate_rdiaapor(start_year=2010, end_year=2020):
+def calculate_rdiaapor(years):
     print('==============================')
     print('rdiaapor:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_rdiaapor.execute(
+    for year in years:
+        cursor.execute(
             "select rdiaapor from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        rdiaapor_now = cursor_rdiaapor.fetchone()[0]
+        rdiaapor_now = cursor.fetchone()[0]
         alist.append(rdiaapor_now)
     print(alist)
     rdiaapor_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -163,15 +144,15 @@ def calculate_rdiaapor(start_year=2010, end_year=2020):
     return rdiaapor_list
 
 
-def calculate_artd(start_year=2010, end_year=2020):
+def calculate_artd(years):
     print('==============================')
     print('artd:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_artd.execute(
+    for year in years:
+        cursor.execute(
             "select accounts_receivable_turnover_days from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        artd_now = cursor_artd.fetchone()[0]
+        artd_now = cursor.fetchone()[0]
         alist.append(artd_now)
     print(alist)
     artd_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -181,15 +162,15 @@ def calculate_artd(start_year=2010, end_year=2020):
     return artd_list
 
 
-def calculate_inventory_turnover_days(start_year=2010, end_year=2020):
+def calculate_inventory_turnover_days(years):
     print('==============================')
     print('inventory_turnover_days:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_inventory_turnover_days.execute(
+    for year in years:
+        cursor.execute(
             "select inventory_turnover_days from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        inventory_turnover_days_now = cursor_inventory_turnover_days.fetchone()[0]
+        inventory_turnover_days_now = cursor.fetchone()[0]
         alist.append(inventory_turnover_days_now)
     print(alist)
     inventory_turnover_days_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -199,15 +180,15 @@ def calculate_inventory_turnover_days(start_year=2010, end_year=2020):
     return inventory_turnover_days_list
 
 
-def calculate_sales_to_cash_ratio(start_year=2010, end_year=2020):
+def calculate_sales_to_cash_ratio(years):
     print('==============================')
     print('sales_to_cash_ratio:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_sales_to_cash_ratio.execute(
+    for year in years:
+        cursor.execute(
             "select sales_to_cash_ratio from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        sales_to_cash_ratio_now = cursor_sales_to_cash_ratio.fetchone()[0]
+        sales_to_cash_ratio_now = cursor.fetchone()[0]
         alist.append(sales_to_cash_ratio_now)
     print(alist)
     sales_to_cash_ratio_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -217,15 +198,15 @@ def calculate_sales_to_cash_ratio(start_year=2010, end_year=2020):
     return sales_to_cash_ratio_list
 
 
-def calculate_current_ratio(start_year=2010, end_year=2020):
+def calculate_current_ratio(years):
     print('==============================')
     print('current_ratio:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_current_ratio.execute(
+    for year in years:
+        cursor.execute(
             "select current_ratio from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        current_ratio_now = cursor_current_ratio.fetchone()[0]
+        current_ratio_now = cursor.fetchone()[0]
         alist.append(current_ratio_now)
     print(alist)
     current_ratio_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -235,15 +216,15 @@ def calculate_current_ratio(start_year=2010, end_year=2020):
     return current_ratio_list
 
 
-def calculate_quick_ratio(start_year=2010, end_year=2020):
+def calculate_quick_ratio(years):
     print('==============================')
     print('quick_ratio:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_quick_ratio.execute(
+    for year in years:
+        cursor.execute(
             "select quick_ratio from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        quick_ratio_now = cursor_quick_ratio.fetchone()[0]
+        quick_ratio_now = cursor.fetchone()[0]
         alist.append(quick_ratio_now)
     print(alist)
     quick_ratio_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -253,15 +234,15 @@ def calculate_quick_ratio(start_year=2010, end_year=2020):
     return quick_ratio_list
 
 
-def calculate_interest_payment_multiple(start_year=2010, end_year=2020):
+def calculate_interest_payment_multiple(years):
     print('==============================')
     print('interest_payment_multiple:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_interest_payment_multiple.execute(
+    for year in years:
+        cursor.execute(
             "select interest_payment_multiple from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        interest_payment_multiple_now = cursor_interest_payment_multiple.fetchone()[0]
+        interest_payment_multiple_now = cursor.fetchone()[0]
         alist.append(interest_payment_multiple_now)
     print(alist)
     interest_payment_multiple_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6],
@@ -273,15 +254,15 @@ def calculate_interest_payment_multiple(start_year=2010, end_year=2020):
     return interest_payment_multiple_list
 
 
-def calculate_assets_and_liabilities(start_year=2010, end_year=2020):
+def calculate_assets_and_liabilities(years):
     print('==============================')
     print('assets_and_liabilities:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_assets_and_liabilities.execute(
+    for year in years:
+        cursor.execute(
             "select assets_and_liabilities from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        assets_and_liabilities_now = cursor_assets_and_liabilities.fetchone()[0]
+        assets_and_liabilities_now = cursor.fetchone()[0]
         alist.append(assets_and_liabilities_now)
     print(alist)
     assets_and_liabilities_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -291,15 +272,15 @@ def calculate_assets_and_liabilities(start_year=2010, end_year=2020):
     return assets_and_liabilities_list
 
 
-def calculate_cash_short_debt_ratio(start_year=2010, end_year=2020):
+def calculate_cash_short_debt_ratio(years):
     print('==============================')
     print('cash_short_debt_ratio:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_cash_short_debt_ratio.execute(
+    for year in years:
+        cursor.execute(
             "select assets_and_liabilities from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        cash_short_debt_ratio_now = cursor_cash_short_debt_ratio.fetchone()[0]
+        cash_short_debt_ratio_now = cursor.fetchone()[0]
         alist.append(cash_short_debt_ratio_now)
     print(alist)
     cash_short_debt_ratio_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -309,15 +290,15 @@ def calculate_cash_short_debt_ratio(start_year=2010, end_year=2020):
     return cash_short_debt_ratio_list
 
 
-def calculate_per_capita_output_value(start_year=2010, end_year=2020):
+def calculate_per_capita_output_value(years):
     print('==============================')
     print('per_capita_output_value:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_per_capita_output_value.execute(
+    for year in years:
+        cursor.execute(
             "select per_capita_output_value from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        per_capita_output_value_now = cursor_per_capita_output_value.fetchone()[0]
+        per_capita_output_value_now = cursor.fetchone()[0]
         alist.append(per_capita_output_value_now)
     print(alist)
     per_capita_output_value_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -327,15 +308,15 @@ def calculate_per_capita_output_value(start_year=2010, end_year=2020):
     return per_capita_output_value_list
 
 
-def calculate_per_capita_salary(start_year=2010, end_year=2020):
+def calculate_per_capita_salary(years):
     print('==============================')
     print('per_capita_salary:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_per_capita_salary.execute(
+    for year in years:
+        cursor.execute(
             "select per_capita_salary from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        per_capita_salary_now = cursor_per_capita_salary.fetchone()[0]
+        per_capita_salary_now = cursor.fetchone()[0]
         alist.append(per_capita_salary_now)
     print(alist)
     per_capita_salary_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -345,15 +326,15 @@ def calculate_per_capita_salary(start_year=2010, end_year=2020):
     return per_capita_salary_list
 
 
-def calculate_seaapor(start_year=2010, end_year=2020):
+def calculate_seaapor(years):
     print('==============================')
     print('seaapor:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_seaapor.execute(
+    for year in years:
+        cursor.execute(
             "select seaapor from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        seaapor_now = cursor_seaapor.fetchone()[0]
+        seaapor_now = cursor.fetchone()[0]
         alist.append(seaapor_now)
     print(alist)
     seaapor_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -363,15 +344,15 @@ def calculate_seaapor(start_year=2010, end_year=2020):
     return seaapor_list
 
 
-def calculate_meaapor(start_year=2010, end_year=2020):
+def calculate_meaapor(years):
     print('==============================')
     print('meaapor:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_meaapor.execute(
+    for year in years:
+        cursor.execute(
             "select meaapor from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        meaapor_now = cursor_meaapor.fetchone()[0]
+        meaapor_now = cursor.fetchone()[0]
         alist.append(meaapor_now)
     print(alist)
     meaapor_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -381,15 +362,15 @@ def calculate_meaapor(start_year=2010, end_year=2020):
     return meaapor_list
 
 
-def calculate_ebitda(start_year=2010, end_year=2020):
+def calculate_ebitda(years):
     print('==============================')
     print('ebitda:')
     alist = []
-    for year in range(start_year, end_year):
-        cursor_ebitda.execute(
+    for year in years:
+        cursor.execute(
             "select eaapor from basic_indicators where company_year=%d and company_id=1" %
             (year))
-        ebitda_now = cursor_ebitda.fetchone()[0]
+        ebitda_now = cursor.fetchone()[0]
         alist.append(ebitda_now)
     print(alist)
     ebitda_list = [alist[9] - alist[8], alist[8] - alist[7], alist[7] - alist[6], alist[6] - alist[5],
@@ -399,9 +380,6 @@ def calculate_ebitda(start_year=2010, end_year=2020):
     print('==============================')
     return ebitda_list
 
-
-cursor_insert = db.cursor()
-cursor_create = db.cursor()
 
 sql_create_balance_vertical = """
 CREATE TABLE balance_vertical (
@@ -433,24 +411,36 @@ CREATE TABLE balance_vertical (
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '纵向差额表' ROW_FORMAT = DYNAMIC;
 """
 
-for j in range(0, 9):
-    sql_insert_balance_vertical = """
-    INSERT INTO balance_vertical VALUES (0, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, NULL, NULL, 1);
-    """ % \
-                                  (calculate_gross_profit()[j], calculate_sales_margin()[j], calculate_roe()[j],
-                                   calculate_mbigr()[j],
-                                   calculate_net_profit_growth_rate()[j], calculate_net_assets_growth_rate()[j],
-                                   calculate_rdiaapor()[j], calculate_artd()[j], calculate_inventory_turnover_days()[j],
-                                   calculate_sales_to_cash_ratio()[j], calculate_current_ratio()[j],
-                                   calculate_quick_ratio()[j],
-                                   calculate_inventory_turnover_days()[j], calculate_assets_and_liabilities()[j],
-                                   calculate_cash_short_debt_ratio()[j], calculate_per_capita_output_value()[j],
-                                   calculate_per_capita_salary()[j],
-                                   calculate_seaapor()[j], calculate_meaapor()[j], calculate_ebitda()[j]
-                                   )
-    try:
-        cursor_insert.execute(sql_insert_balance_vertical)
-        db.commit()
-    except:
-        db.rollback()
+
+def insert_balance_vertical(years):
+    for j in range(0, len(years) - 1):
+        sql_insert_balance_vertical = """
+        INSERT INTO balance_vertical VALUES (0, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, NULL, NULL, 1);
+        """ % \
+                                      (calculate_gross_profit(years)[j], calculate_sales_margin(years)[j],
+                                       calculate_roe(years)[j],
+                                       calculate_mbigr(years)[j],
+                                       calculate_net_profit_growth_rate(years)[j],
+                                       calculate_net_assets_growth_rate(years)[j],
+                                       calculate_rdiaapor(years)[j], calculate_artd(years)[j],
+                                       calculate_inventory_turnover_days(years)[j],
+                                       calculate_sales_to_cash_ratio(years)[j], calculate_current_ratio(years)[j],
+                                       calculate_quick_ratio(years)[j],
+                                       calculate_inventory_turnover_days(years)[j],
+                                       calculate_assets_and_liabilities(years)[j],
+                                       calculate_cash_short_debt_ratio(years)[j],
+                                       calculate_per_capita_output_value(years)[j],
+                                       calculate_per_capita_salary(years)[j],
+                                       calculate_seaapor(years)[j], calculate_meaapor(years)[j],
+                                       calculate_ebitda(years)[j]
+                                       )
+        try:
+            cursor.execute(sql_insert_balance_vertical)
+            db.commit()
+        except:
+            db.rollback()
+    return True
+
+
+insert_balance_vertical([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019])
 db.close()
