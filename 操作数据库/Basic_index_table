@@ -42,8 +42,9 @@ db = pymysql.connect(
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
 cursor = db.cursor()
-def Basic_index_table(company_id):
-        for company_year in range(2018,2019):
+company_years=list()
+def Basic_index_table(company_id,company_years):
+        for company_year in company_years:
                 # 1、销售毛利率=(基础利润表)营业收入-(基础利润表)营业成本/(基础利润表)营业收入;
                 cursor.execute("select operating_income from basis_profit where company_id=%s and company_year=%s",(company_id,company_year))
                 a = cursor.fetchall()
@@ -488,4 +489,4 @@ def Basic_index_table(company_id):
         # 5. 关闭连接
         db.close()
 
-Basic_index_table(1)
+Basic_index_table(1,[2018,2019])
