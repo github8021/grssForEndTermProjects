@@ -31,6 +31,5 @@ def search_Balance_vertical(company_id,company_years):
                           where company_id=%s and company_year=%s""",(company_id, company_year))
         result = cursor.fetchall()
         print(result)
-        db.commit()
 
 search_Balance_vertical(1,[2018,2019])
