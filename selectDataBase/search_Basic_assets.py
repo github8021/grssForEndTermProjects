@@ -12,7 +12,7 @@
 #查询基础表——基础资产表
 import pymysql
 
-def search_Basic_index_table(company_id,company_years):
+def search_Basis_assets(company_id,company_years):
     db = pymysql.connect(
         host='localhost',
         user='root',
@@ -47,7 +47,7 @@ def search_Basic_index_table(company_id,company_years):
         print(result)
         db.commit()
 
-search_Basic_index_table(1,[2018,2019])
+search_Basis_assets(1,[2018,2019])
 
 
 
