@@ -60,3 +60,26 @@ def is_empty_supplementary_data(company, years):
     return False
 
 
+def select_all_company_and_status():
+    db = pymysql.connect("localhost", "root", "root", "grss")
+    cur = db.cursor()
+    sql = "select company_id,company_name from company"
+    cur.execute(sql)
+    result = cur.fetchall()
+    aa = []
+    a = []
+    for i in result:
+        for j in range(2017, 2020):
+            a.append(i)
+            a.append(j)
+            b = []
+            b.append(j)
+            a.append(is_empty_basis_assets(i[0], b))
+            a.append(is_empty_basis_cash(i[0], b))
+            a.append(is_empty_basis_profit(i[0], b))
+            a.append(is_empty_supplementary_data(i[0], b))
+            aa.append(a)
+    return aa
+
+
+print(select_all_company_and_status())
