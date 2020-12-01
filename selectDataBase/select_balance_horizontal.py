@@ -30,7 +30,7 @@ db = pymysql.connect("localhost", db_username, db_password, db_name)
 # cursor
 cursor = db.cursor()
 
-def select_balance_vertical(known_table,known_table_attribute,company_id):
+def select_balance_horizontal(known_table,known_table_attribute,company_id):
     tablelist=[]
     columnlist=[]
     alist = []
@@ -50,4 +50,4 @@ def select_balance_vertical(known_table,known_table_attribute,company_id):
             alist.append(i[0])
     print(alist)
     return alist
-select_balance_vertical("'balance_horizontal'","'meaapor'",1)
+select_balance_horizontal("'balance_horizontal'","'meaapor'",1)
