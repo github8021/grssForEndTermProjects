@@ -21,8 +21,8 @@ cursor = db.cursor()
 
 def select_power_weight():
     cursor.execute("select * from power_weight")
-    power_weight_info = cursor.fetchall()
+    power_weight_info = cursor.fetchall()[0]
     return power_weight_info
 
 
-# print(select_power_weight())
+print(select_power_weight())
