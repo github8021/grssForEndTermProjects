@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/OperateDatabase/balance_vertical.py" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/selectDataBase/select_company.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/selectDataBase/select_field_translation.py" dialect="GenericSQL" />
   </component>
 </project>
