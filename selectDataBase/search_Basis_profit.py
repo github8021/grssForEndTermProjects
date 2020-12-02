@@ -23,16 +23,15 @@ def search_Basic_profit(company_id,company_years):
     )
     cursor = db.cursor()
     for company_year in company_years:
-        cursor.execute("""select total_operating_income,operating_income,total_operating_costs,operating_costs，business_tax_and_surcharges，
-                          sales_expense,management_costs,financial_expenses，rd_expenses，asset_impairment_loss，
-                          lncome_changes_in_value,investment_income,iiifaajv,exchange_gains,operating_profit,
+        cursor.execute("""select total_operating_income,operating_income,total_operating_costs,operating_costs,business_tax_and_surcharges,
+                          sales_expense,management_costs,financial_expenses,rd_expenses,asset_impairment_loss,
+                          Income_changes_in_value,investment_income,iiifaajv,exchange_gains,operating_profit,
                           anoi,lnoe,llodonca,the_total_profit,deduct_income_tax_expense,
-                          net_profit,trpbttpco,earnings_per_share，basic_earnings_per_share,diluted_earnings_per_share,
+                          net_profit,trpbttpco,earnings_per_share,basic_earnings_per_share,diluted_earnings_per_share,
                           other_comprehensive_income,total_comprehensive_income,tciatootp,tciatms
                           from basis_profit
                           where company_id=%s and company_year=%s""",(company_id, company_year))
         result = cursor.fetchall()
         print(result)
-        db.commit()
 
 search_Basic_profit(1,[2018,2019])
