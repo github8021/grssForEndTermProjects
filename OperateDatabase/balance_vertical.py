@@ -31,8 +31,8 @@ def calculate_gross_profit(years, company):
         gross_profit_margin_now = cursor.fetchone()[0]
         alist.append(gross_profit_margin_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        gross_profit_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        gross_profit_list.append(alist[i + 1] - alist[i])
     print(gross_profit_list)
     print('==============================')
     return gross_profit_list
@@ -49,8 +49,8 @@ def calculate_sales_margin(years, company):
         sales_margin_now = cursor.fetchone()[0]
         alist.append(sales_margin_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        sales_margin_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        sales_margin_list.append(alist[i + 1] - alist[i])
     print(sales_margin_list)
     print('==============================')
     return sales_margin_list
@@ -68,8 +68,8 @@ def calculate_roe(years, company):
         roe_now = cursor.fetchone()[0]
         alist.append(roe_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        roe_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        roe_list.append(alist[i + 1] - alist[i])
     print(roe_list)
     print('==============================')
     return roe_list
@@ -87,8 +87,8 @@ def calculate_mbigr(years, company):
         mbigr_now = cursor.fetchone()[0]
         alist.append(mbigr_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        mbigr_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        mbigr_list.append(alist[i + 1] - alist[i])
     print(mbigr_list)
     print('==============================')
     return mbigr_list
@@ -106,8 +106,8 @@ def calculate_net_profit_growth_rate(years, company):
         net_profit_growth_rate_now = cursor.fetchone()[0]
         alist.append(net_profit_growth_rate_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        net_profit_growth_rate_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        net_profit_growth_rate_list.append(alist[i + 1] - alist[i])
     print(net_profit_growth_rate_list)
     print('==============================')
     return net_profit_growth_rate_list
@@ -124,8 +124,8 @@ def calculate_net_assets_growth_rate(years, company):
             (year, company))
         net_assets_growth_rate_now = cursor.fetchone()[0]
         alist.append(net_assets_growth_rate_now)
-    for i in range(len(years) - 1, 1, -1):
-        net_profit_assets_rate_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        net_profit_assets_rate_list.append(alist[i + 1] - alist[i])
     print(net_profit_assets_rate_list)
     print('==============================')
     return net_profit_assets_rate_list
@@ -143,8 +143,8 @@ def calculate_rdiaapor(years, company):
         rdiaapor_now = cursor.fetchone()[0]
         alist.append(rdiaapor_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        rdiaapor_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        rdiaapor_list.append(alist[i + 1] - alist[i])
     print(rdiaapor_list)
     print('==============================')
     return rdiaapor_list
@@ -162,8 +162,8 @@ def calculate_artd(years, company):
         artd_now = cursor.fetchone()[0]
         alist.append(artd_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        artd_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        artd_list.append(alist[i + 1] - alist[i])
     print(artd_list)
     print('==============================')
     return artd_list
@@ -181,8 +181,8 @@ def calculate_inventory_turnover_days(years, company):
         inventory_turnover_days_now = cursor.fetchone()[0]
         alist.append(inventory_turnover_days_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        inventory_turnover_days_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        inventory_turnover_days_list.append(alist[i + 1] - alist[i])
     print(inventory_turnover_days_list)
     print('==============================')
     return inventory_turnover_days_list
@@ -200,8 +200,8 @@ def calculate_sales_to_cash_ratio(years, company):
         sales_to_cash_ratio_now = cursor.fetchone()[0]
         alist.append(sales_to_cash_ratio_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        sales_to_cash_ratio_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        sales_to_cash_ratio_list.append(alist[i + 1] - alist[i])
     print(sales_to_cash_ratio_list)
     print('==============================')
     return sales_to_cash_ratio_list
@@ -219,8 +219,8 @@ def calculate_current_ratio(years, company):
         current_ratio_now = cursor.fetchone()[0]
         alist.append(current_ratio_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        current_ratio_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        current_ratio_list.append(alist[i + 1] - alist[i])
     print(current_ratio_list)
     print('==============================')
     return current_ratio_list
@@ -238,8 +238,8 @@ def calculate_quick_ratio(years, company):
         quick_ratio_now = cursor.fetchone()[0]
         alist.append(quick_ratio_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        quick_ratio_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        quick_ratio_list.append(alist[i + 1] - alist[i])
     print(quick_ratio_list)
     print('==============================')
     return quick_ratio_list
@@ -257,8 +257,8 @@ def calculate_interest_payment_multiple(years, company):
         interest_payment_multiple_now = cursor.fetchone()[0]
         alist.append(interest_payment_multiple_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        interest_payment_multiple_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        interest_payment_multiple_list.append(alist[i + 1] - alist[i])
     print(interest_payment_multiple_list)
     print('==============================')
     return interest_payment_multiple_list
@@ -276,8 +276,8 @@ def calculate_assets_and_liabilities(years, company):
         assets_and_liabilities_now = cursor.fetchone()[0]
         alist.append(assets_and_liabilities_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        assets_and_liabilities_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        assets_and_liabilities_list.append(alist[i + 1] - alist[i])
     print(assets_and_liabilities_list)
     print('==============================')
     return assets_and_liabilities_list
@@ -295,8 +295,8 @@ def calculate_cash_short_debt_ratio(years, company):
         cash_short_debt_ratio_now = cursor.fetchone()[0]
         alist.append(cash_short_debt_ratio_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        cash_short_debt_ratio_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        cash_short_debt_ratio_list.append(alist[i + 1] - alist[i])
     print(cash_short_debt_ratio_list)
     print('==============================')
     return cash_short_debt_ratio_list
@@ -314,8 +314,8 @@ def calculate_per_capita_output_value(years, company):
         per_capita_output_value_now = cursor.fetchone()[0]
         alist.append(per_capita_output_value_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        per_capita_output_value_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        per_capita_output_value_list.append(alist[i + 1] - alist[i])
     print(per_capita_output_value_list)
     print('==============================')
     return per_capita_output_value_list
@@ -333,8 +333,8 @@ def calculate_per_capita_salary(years, company):
         per_capita_salary_now = cursor.fetchone()[0]
         alist.append(per_capita_salary_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        per_capita_salary_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        per_capita_salary_list.append(alist[i + 1] - alist[i])
     print(per_capita_salary_list)
     print('==============================')
     return per_capita_salary_list
@@ -352,8 +352,8 @@ def calculate_seaapor(years, company):
         seaapor_now = cursor.fetchone()[0]
         alist.append(seaapor_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        seaapor_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        seaapor_list.append(alist[i + 1] - alist[i])
     print(seaapor_list)
     print('==============================')
     return seaapor_list
@@ -371,8 +371,8 @@ def calculate_meaapor(years, company):
         meaapor_now = cursor.fetchone()[0]
         alist.append(meaapor_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        meaapor_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        meaapor_list.append(alist[i + 1] - alist[i])
     print(meaapor_list)
     print('==============================')
     return meaapor_list
@@ -390,8 +390,8 @@ def calculate_ebitda(years, company):
         ebitda_now = cursor.fetchone()[0]
         alist.append(ebitda_now)
 
-    for i in range(len(years) - 1, 1, -1):
-        ebitda_list.append(alist[i] - alist[i - 1])
+    for i in range(0, len(years) - 1):
+        ebitda_list.append(alist[i + 1] - alist[i])
     print(ebitda_list)
     print('==============================')
     return ebitda_list
@@ -429,11 +429,11 @@ CREATE TABLE balance_vertical (
 
 
 def insert_balance_vertical(years, company):
-    for j in range(0, len(years) - 2):
+    for j in range(0, len(years) - 1):
         sql_insert_balance_vertical = """
         INSERT INTO balance_vertical VALUES (%d, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, NULL, NULL, %d);
         """ % \
-                                      (int(str(company)+str(j+1)),
+                                      (int(str(company) + str(j + 1)),
                                        calculate_gross_profit(years, company)[j],
                                        calculate_sales_margin(years, company)[j],
                                        calculate_roe(years, company)[j],
