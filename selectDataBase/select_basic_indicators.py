@@ -196,7 +196,7 @@ insert into calculate_reference1('known_table','known_table_attribute','original
 # cursor
 cursor = db.cursor()
 
-def select_basic_indicators(known_table, known_table_attribute, company_id):
+def select_basic_indicators(known_table, known_table_attribute, company_id,company_year):
 
     # cursor.execute(create_sql)
     # cursor.execute(insert_sql)
@@ -213,11 +213,12 @@ def select_basic_indicators(known_table, known_table_attribute, company_id):
     # print(tablelist)
     # print(columnlist)
     for listnum in range(0, len(result)):
-        cursor.execute("select %s from %s where company_id=%d" %
-                       (columnlist[listnum], tablelist[listnum], company_id))
+        cursor.execute("select %s from %s where company_id=%d and company_year=%d" %
+                       (columnlist[listnum], tablelist[listnum], company_id,company_year))
         result1 = cursor.fetchall()
         for i in result1:
             alist.append(i[0])
-    print(alist)
     return alist
-select_basic_indicators("'basic_indicators'", "'gross_profit_margin'", 1)
+
+
+

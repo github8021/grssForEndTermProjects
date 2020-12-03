@@ -428,10 +428,17 @@ CREATE TABLE balance_vertical (
 """
 
 
+def year_list(years):
+    year_list = []
+    for year in years:
+        year_list.append(year + 1)
+    return year_list
+
+
 def insert_balance_vertical(years, company):
     for j in range(0, len(years) - 1):
         sql_insert_balance_vertical = """
-        INSERT INTO balance_vertical VALUES (%d, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, NULL, NULL, %d);
+        INSERT INTO balance_vertical VALUES (%d, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %d, NULL, %d);
         """ % \
                                       (int(str(company) + str(j + 1)),
                                        calculate_gross_profit(years, company)[j],
@@ -452,6 +459,7 @@ def insert_balance_vertical(years, company):
                                        calculate_per_capita_salary(years, company)[j],
                                        calculate_seaapor(years, company)[j], calculate_meaapor(years, company)[j],
                                        calculate_ebitda(years, company)[j],
+                                       year_list(years)[j],
                                        company
                                        )
         try:
