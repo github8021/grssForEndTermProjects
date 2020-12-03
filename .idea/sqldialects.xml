@@ -2,8 +2,14 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/OperateDatabase/balance_vertical.py" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/OperateDatabase/insert_balance_vertical_score.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/selectDataBase/select_company.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/selectDataBase/select_field_translation.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/selectDataBase/select_power_weight.py" dialect="GenericSQL" />
+    <file url="PROJECT" dialect="MySQL" />
+  </component>
+  <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$/OperateDatabase/insert_balance_horizontal_score.py" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;@negative&quot;:&quot;1&quot;   }  } }}" />
+    <file url="PROJECT" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;e5920ce6-274c-4921-bba8-35f94096ff60&quot;    }   }  } }}" />
   </component>
 </project>
