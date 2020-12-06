@@ -22,6 +22,7 @@ def search_Basic_cash(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a=list()
     for company_year in company_years:
         cursor.execute("""select crfsgapls,tax_refund,ocrrtoa,socifoa,cpfpgarls,
                           cptfe,various_taxes_paid,oprtoa,socofoa,ncffoa,
@@ -34,13 +35,14 @@ def search_Basic_cash(company_id,company_years):
                           unrecognized_investment_loss,impairment_of_assets,dofadooagadopm,amortization_of_intangible_assets,aoltde,
                           rope,increase_accrued_expenses,lodofaiaaolta,lfsfa,lfcifv,
                           increase_in_deferred_revenue,estimated_liabilities,financial_expenses,investment_loss,decrease_deferred_income,
-                          iiditl,decrease_in_inventory,decrease_in_operating_receiv,ables,increase_in_operating_payables,reduction_completed_unsettled_payments,
+                          iiditl,decrease_in_inventory,decrease_in_operating_receivables,increase_in_operating_payables,reduction_completed_unsettled_payments,
                           increase_settled_unfinished_payment,other,from_operating_activities,conversion_of_debt_capital,ccbdwoy,
                           flofa,ending_balance_of_cash,opening_balance_of_cash,ending_balance_cash_equivalents,opening_balance_cash_equivalents,
                           cash_and_cash_equivalents
                           from basis_cash
                           where company_id=%s and company_year=%s""",(company_id, company_year))
-        result = cursor.fetchall()
-        print(result)
+        result = cursor.fetchall()[0]
+        a.append(result)
+    print(a)
 
 search_Basic_cash(1,[2018,2019])

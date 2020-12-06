@@ -22,6 +22,7 @@ def search_Basis_assets(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a=list()
     for company_year in company_years:
         cursor.execute("""select current_assets,money_funds,transactional_financial_assets,derivative_financial_assets,notes_receivable_accounts_receivable
                           bill_receivable,accounts_receivable,receivable_financing,prepayments,other_receivables,
@@ -43,8 +44,9 @@ def search_Basis_assets(company_id,company_years):
                           undistributed_profit,teatsotpc,toeose,tlaoeose
                           from basis_assets
                           where company_id=%s and company_year=%s""",(company_id, company_year))
-        result = cursor.fetchall()
-        print(result)
+        result = cursor.fetchall()[0]
+        a.append(result)
+    print(a)
 search_Basis_assets(1,[2018,2019])
 
 
