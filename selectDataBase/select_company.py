@@ -34,4 +34,4 @@ def select_company_by_name(company_name):
 
 # 注意传参数时的格式 写在 "'   (company_name)   '"中
 
-print(select_company_by_name("'兔宝宝'"))
+# print(select_company_by_name("'兔宝宝'"))
