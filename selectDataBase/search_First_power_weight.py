@@ -69,7 +69,7 @@ def updata_First_power_weight(profitability,growth_ability,operating_capacity,so
     cursor.execute(sql, list)
     db.commit()
     db.rollback()
-updata_First_power_weight(0.15,0.15,0.25,0.25,0.2)
+#updata_First_power_weight(0.15,0.15,0.25,0.25,0.2)
 
 
 
