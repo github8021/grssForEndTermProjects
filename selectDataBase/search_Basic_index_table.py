@@ -22,6 +22,7 @@ def search_Basic_index_table(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a = list()
     for company_year in company_years:
         cursor.execute("""select gross_profit_margin,sales_margin,roe,mbigr,net_profit_growth_rate,
                     net_assets_growth_rate,rdiaapor,accounts_receivable_turnover_days,inventory_turnover_days,sales_to_cash_ratio,
@@ -29,8 +30,9 @@ def search_Basic_index_table(company_id,company_years):
                     per_capita_output_value,per_capita_salary,seaapor,meaapor,eaapor 
                     from basic_indicators 
                     where company_id=%s and company_year=%s""",(company_id, company_year))
-        result = cursor.fetchall()
-        print(result)
+        result = cursor.fetchall()[0]
+        a.append(result)
+    print(a)
 
 search_Basic_index_table(1,[2018,2019])
 
