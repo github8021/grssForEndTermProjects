@@ -22,6 +22,7 @@ def search_Basic_profit(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a=list()
     for company_year in company_years:
         cursor.execute("""select total_operating_income,operating_income,total_operating_costs,operating_costs,business_tax_and_surcharges,
                           sales_expense,management_costs,financial_expenses,rd_expenses,asset_impairment_loss,
@@ -31,7 +32,7 @@ def search_Basic_profit(company_id,company_years):
                           other_comprehensive_income,total_comprehensive_income,tciatootp,tciatms
                           from basis_profit
                           where company_id=%s and company_year=%s""",(company_id, company_year))
-        result = cursor.fetchall()
-        print(result)
-
+        result = cursor.fetchall()[0]
+        a.append(result)
+    print(a)
 search_Basic_profit(1,[2018,2019])
