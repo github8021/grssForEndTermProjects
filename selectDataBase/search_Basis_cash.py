@@ -44,5 +44,6 @@ def search_Basic_cash(company_id,company_years):
         result = cursor.fetchall()[0]
         a.append(result)
     print(a)
+    return a
 
 search_Basic_cash(1,[2018,2019])

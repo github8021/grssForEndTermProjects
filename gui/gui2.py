@@ -4,7 +4,7 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 # sjw
-from selectDataBase import selectCompanyStatus
+from selectDataBase import selectCompanyStatus, search_Basis_cash, search_Basis_profit
 # cr
 from selectDataBase import search_Basic_assets
 
@@ -253,11 +253,39 @@ class Ui_MainWindow(object):
         self.ButtonGroup.addButton(self.radioButton_2)
         self.ButtonGroup.addButton(self.radioButton_3)
         self.ButtonGroup.addButton(self.radioButton)
+
+        # 监听事件
         self.ButtonGroup.buttonClicked.connect(self.PressButton)
+        # self.optionalTree.connect(self, SIGNAL('itemClicked(QTreeWidgetItem*, int)'), self.onClick)
+
+        self.optionalTree.itemClicked.connect(self.PressItem)
 
     def PressButton(self):
-        print(self.ButtonGroup.checkedButton().text())
-        print("123")
+        tableName = self.ButtonGroup.checkedButton().text()
+        if tableName == '基础资产表':
+            self.msgTable.close()
+            result = search_Basic_assets.search_Basis_assets(1, [2018])
+            self.tableMsg(result, "基础资产表");
+            self.verticalLayout_2.addWidget(self.msgTable)
+        if tableName == '基础限定表':
+            self.msgTable.close()
+            result = search_Basis_cash.search_Basic_cash(1, [2018, 2019])
+            self.tableMsg(result, "基础限定表");
+            self.verticalLayout_2.addWidget(self.msgTable)
+
+        if tableName == '基础利润表':
+            self.msgTable.close()
+            result2 = search_Basis_profit.search_Basic_profit(1, [2018, 2019])
+            print(result2)
+            self.tableMsg(result2, "基础利润表");
+            self.verticalLayout_2.addWidget(self.msgTable)
+        if tableName == '辅助数据表':
+            print("123")
+
+    def PressItem(self, item, column):
+        # print(column)
+        # print(self.optionalTree.parent())
+        print(item.text(0))
 
 
 if __name__ == "__main__":
