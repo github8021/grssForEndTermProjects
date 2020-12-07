@@ -93,10 +93,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_4)
         #   ！！！！！！！！！！！！！！！！！！！
         # 布局
-        self.msgTable = QTableWidget(self.centralwidget)
 
         result = search_Basic_assets.search_Basis_assets(1, [2018, 2019])
-        self.tableMsg(result);
+        print(result)
+        # tup1 = (('physics', 'chemistry', 1997, 2000), ('physics', 'chemistry', 1997, 2000));
+        self.tableMsg(result, "基础资产表");
 
         self.verticalLayout_2.addWidget(self.msgTable)
         # --------------------- table end --------------------------------------------
@@ -104,15 +105,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addLayout(self.verticalLayout_2)
 
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
-
-        self.progressBar = QProgressBar(self.centralwidget)
-        self.progressBar.setObjectName(u"progressBar")
-        font1 = QFont()
-        font1.setPointSize(12)
-        self.progressBar.setFont(font1)
-        self.progressBar.setValue(24)
-
-        self.gridLayout.addWidget(self.progressBar, 1, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -136,8 +128,23 @@ class Ui_MainWindow(object):
 
     # 入参格式 ：二维数组
     # 表格构建
-    def tableMsg(self, result):
+    def tableMsg(self, result, runningLog):
+        # 进度条
+
+        self.progressBar = QProgressBar(self.centralwidget)
+        self.progressBar.setObjectName(u"progressBar")
+        font1 = QFont()
+        font1.setPointSize(12)
+        self.progressBar.setFont(font1)
+        # for Percent in range(100 + 1):  # 从0计数到100
+        #     self.progressBar.setValue(Percent)  # 设置当前进度值
+        #     time.sleep(0.05)
+        # 进度条
+
+        self.gridLayout.addWidget(self.progressBar, 1, 0, 1, 1)
+        self.runningLogText.append(runningLog + "- 开始查询")
         # 7788参数
+        self.msgTable = QTableWidget(self.centralwidget)
         self.msgTable.setObjectName(u"msgTable")
         sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
@@ -149,12 +156,14 @@ class Ui_MainWindow(object):
         self.msgTable.setStyleSheet(u"")
 
         # 接口 search_Basis_assets
+
         if not result is None:
-            columnFirstCount = len(result[0])
+            rowCount = len(result)
         else:
             print("结果集为空")
-        rowCount = len(result)
-        print(columnFirstCount)
+            return
+        columnFirstCount = len(result[0])
+
         self.msgTable.setColumnCount(columnFirstCount)
         self.msgTable.setRowCount(rowCount)
         for i in range(columnFirstCount):
@@ -165,8 +174,6 @@ class Ui_MainWindow(object):
         # row
         rowCountRange = int(columnFirstCount + 1)
         for row in range(rowCount):
-            print(row)
-
             __qtablewidgetitem5 = QTableWidgetItem()
             self.msgTable.setVerticalHeaderItem(row, __qtablewidgetitem5)
             ___qtablewidgetitem4 = self.msgTable.verticalHeaderItem(row)
@@ -174,11 +181,13 @@ class Ui_MainWindow(object):
 
             columnRange = int(columnFirstCount)
             for column in range(columnRange):
-                print(column)
                 msg = str(result[row][column])
-                print(msg)
                 newItem = QTableWidgetItem(msg)
                 self.msgTable.setItem(row, column, newItem)
+        # warning log
+        self.runningLogText.append(runningLog + "- 查询成功 ")
+        self.progressBar.setValue(100)
+        self.progressBar.reset()
 
     def choosenTree(self):
         # tree
@@ -202,7 +211,7 @@ class Ui_MainWindow(object):
             ___qtreewidgetitem1 = self.optionalTree.topLevelItem(i)
             ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", companyName[1], None));
 
-            for j in range(1, 4):
+            for j in range(1, len(subMessage)):
                 yearAndStatus = subMessage[j]
                 year = yearAndStatus[0]
                 status1 = yearAndStatus[1]
@@ -212,8 +221,6 @@ class Ui_MainWindow(object):
                 QTreeWidgetItem(__qtreewidgetitem1)
                 ___qtreewidgetitem2 = ___qtreewidgetitem1.child(j - 1)
                 ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", str(year), None));
-                # ___qtreewidgetitem3 = ___qtreewidgetitem1.child(1)
-                # ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"table1_2", None));
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
@@ -232,48 +239,25 @@ class Ui_MainWindow(object):
         self.optionalTree.setSortingEnabled(__sortingEnabled)
 
         self.label.setText(QCoreApplication.translate("MainWindow", u" running log", None))
-        self.runningLogText.setHtml(QCoreApplication.translate("MainWindow",
-                                                               u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                                               "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                                               "p, li { white-space: pre-wrap; }\n"
-                                                               "</style></head><body style=\" font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">running log</p>\n"
-                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">running log</p>\n"
-                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">running log</p>\n"
-                                                               "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">running log</p>\n"
-                                                               "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bloc"
-                                                               "k-indent:0; text-indent:0px; font-family:'SimSun'; font-size:9pt;\"><br /></p>\n"
-                                                               "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun'; font-size:9pt;\"><br /></p>\n"
-                                                               "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>",
-                                                               None))
+
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"\u57fa\u7840\u8d44\u4ea7\u8868", None))
         self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"\u57fa\u7840\u9650\u5b9a\u8868", None))
         self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"\u57fa\u7840\u5229\u6da6\u8868", None))
         self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"\u8f85\u52a9\u6570\u636e\u8868", None))
-        # ___qtablewidgetitem = self.msgTable.horizontalHeaderItem(0)
-        # ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"2016", None));
-        # ___qtablewidgetitem1 = self.msgTable.horizontalHeaderItem(1)
-        # ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"2017", None));
-        # ___qtablewidgetitem2 = self.msgTable.horizontalHeaderItem(2)
-        # ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"2018", None));
-        # ___qtablewidgetitem3 = self.msgTable.horizontalHeaderItem(3)
-        # ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"2019", None));
-        # ___qtablewidgetitem8 = self.msgTable.horizontalHeaderItem(4)
-        # ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"2019", None));
-        # ___qtablewidgetitem9 = self.msgTable.horizontalHeaderItem(5)
-        # ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"2019", None));
-
-        # ___qtablewidgetitem4 = self.msgTable.verticalHeaderItem(0)
-        # ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"row1", None));
-        # ___qtablewidgetitem5 = self.msgTable.verticalHeaderItem(1)
-        # ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"row2", None));
-        # ___qtablewidgetitem6 = self.msgTable.verticalHeaderItem(2)
-        # ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"row3", None));
-        # ___qtablewidgetitem7 = self.msgTable.verticalHeaderItem(3)
-        # ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"row4", None));
 
         self.menuactive.setTitle(QCoreApplication.translate("MainWindow", u"active", None))
-    # retranslateUi
+
+        # radioButton
+        self.ButtonGroup = QButtonGroup()
+        self.ButtonGroup.addButton(self.radioButton_4)
+        self.ButtonGroup.addButton(self.radioButton_2)
+        self.ButtonGroup.addButton(self.radioButton_3)
+        self.ButtonGroup.addButton(self.radioButton)
+        self.ButtonGroup.buttonClicked.connect(self.PressButton)
+
+    def PressButton(self):
+        print(self.ButtonGroup.checkedButton().text())
+        print("123")
 
 
 if __name__ == "__main__":
