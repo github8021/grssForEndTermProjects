@@ -9,20 +9,21 @@
 # @Software :PyCharm
 -------------------------------------------------
 """
-#查询基础表——基础资产表
+# 查询基础表——基础资产表
 import pymysql
 
-def search_Basis_assets(company_id,company_years):
+
+def search_Basis_assets(company_id, company_years):
     db = pymysql.connect(
         host='localhost',
         user='root',
-        password='fangpiisyou',  # 密码
+        password='admin',  # 密码
         db='grss',  # 库名
         charset='utf8',
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
-    a=list()
+    a = list()
     for company_year in company_years:
         cursor.execute("""select current_assets,money_funds,transactional_financial_assets,derivative_financial_assets,notes_receivable_accounts_receivable
                           bill_receivable,accounts_receivable,receivable_financing,prepayments,other_receivables,
@@ -43,33 +44,10 @@ def search_Basis_assets(company_id,company_years):
                           less_treasury_stock,other_comprehensive_income,special_reserves,surplus_reserve,general_risk_preparation,
                           undistributed_profit,teatsotpc,toeose,tlaoeose
                           from basis_assets
-                          where company_id=%s and company_year=%s""",(company_id, company_year))
+                          where company_id=%s and company_year=%s""", (company_id, company_year))
         result = cursor.fetchall()[0]
         a.append(result)
-    print(a)
-search_Basis_assets(1,[2018,2019])
+    return a
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(search_Basis_assets(1, [2018, 2019]))

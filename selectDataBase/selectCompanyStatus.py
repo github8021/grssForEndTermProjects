@@ -71,7 +71,7 @@ def select_all_company_and_status():
         # print(i)
         a = []
         a.append(i)
-        for j in range(2017, 2020):
+        for j in range(2012, 2019):
             year_status =[]
             # 年份数组
             b = []
