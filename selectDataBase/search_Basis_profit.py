@@ -16,7 +16,7 @@ def search_Basic_profit(company_id,company_years):
     db = pymysql.connect(
         host='localhost',
         user='root',
-        password='fangpiisyou',  # 密码
+        password='admin',  # 密码
         db='grss',  # 库名
         charset='utf8',
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
@@ -34,5 +34,6 @@ def search_Basic_profit(company_id,company_years):
                           where company_id=%s and company_year=%s""",(company_id, company_year))
         result = cursor.fetchall()[0]
         a.append(result)
-    print(a)
+    # print(a)
+    return a
 search_Basic_profit(1,[2018,2019])
