@@ -22,6 +22,7 @@ def search_Balance_horizontal(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a = list()
     for company_year in company_years:
         cursor.execute("""select gross_profit_margin,sales_margin,roe,mbigr,net_profit_growth_rate,
                           net_assets_growth_rate,rdiaapor,artd,inventory_turnover_days,current_ratio,
@@ -30,6 +31,8 @@ def search_Balance_horizontal(company_id,company_years):
                           from balance_horizontal
                           where company_id=%s and company_year=%s""",(company_id, company_year))
         result = cursor.fetchall()
-        print(result)
+        a.append(result)
+    #print(a)
+    return a
 
 search_Balance_horizontal(1,[2018,2019])

@@ -32,7 +32,7 @@ def search_Basic_index_table(company_id,company_years):
                     where company_id=%s and company_year=%s""",(company_id, company_year))
         result = cursor.fetchall()[0]
         a.append(result)
-    print(a)
+    return a
 
 search_Basic_index_table(1,[2018,2019])
 
