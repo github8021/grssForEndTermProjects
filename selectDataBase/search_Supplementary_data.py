@@ -22,6 +22,7 @@ def search_Supplementary_data(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a = list()
     for company_year in company_years:
         cursor.execute("""select total_number_employees,profit_before_interest_tax,nterest_payments,ebitda,gasoline_usage,
                           gasoline_density,water_use,water_resource_utilization_density,power_usage,power_usage_density,
@@ -29,8 +30,10 @@ def search_Supplementary_data(company_id,company_years):
                           greenhouse_gas_emission_density,harmless_waste_discharge,harmless_waste_discharge_density,hazardous_waste_discharge,edhwg
                           from supplementary_data
                           where company_id=%s and company_year=%s""",(company_id, company_year))
-        result = cursor.fetchall()
-        print(result)
+        result = cursor.fetchall()[0]
+        a.append(result)
+    print(a)
+    return a
 
 search_Supplementary_data(1,[2018,2019])
 

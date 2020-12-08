@@ -22,6 +22,7 @@ def search_Financial_scoring_rules(company_id,company_years):
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
     cursor = db.cursor()
+    a = list()
     for company_year in company_years:
         cursor.execute("""select gross_profit_margin_up,gross_profit_margin_down,sales_margin_up,sales_margin_down,roe_up,
                           roe_down,mbigr_up,mbigr_down,net_profit_growth_rate_up,net_profit_growth_rate_down,
@@ -35,6 +36,8 @@ def search_Financial_scoring_rules(company_id,company_years):
                           from financial_scoring_rules
                           where company_id=%s and company_year=%s""",(company_id, company_year))
         result = cursor.fetchall()
-        print(result)
+        a.append(result)
+    #print(a)
+    return a
 
 search_Financial_scoring_rules(1,[2018,2019])
